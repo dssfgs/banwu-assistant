@@ -13,15 +13,14 @@
   <style>
     :root {
       --ink: #1b3a4b; --ink-2: #2c5364; --paper: #f4efe6; --card: #fffdf8; --line: #e2d8c8;
-      --muted: #6b7c86; --accent: #c9842a; --accent-soft: #f3e2c4; --good: #2d6a4f; --good-bg: #e8f5ee;
+      --muted: #6b7c86; --accent: #c9842a; --good: #2d6a4f; --good-bg: #e8f5ee;
       --warn: #9a3412; --warn-bg: #fde8e0; --late: #92400e; --late-bg: #fef3c7;
       --shadow: 0 8px 24px rgba(27, 58, 75, .08); --radius: 16px; --sidebar: 240px;
     }
     [data-theme="dark"] {
-      --ink: #e8eef2; --ink-2: #c5d0d6; --paper: #121a20; --card: #1b262e; --line: #2c3b45;
-      --muted: #93a4ae; --accent: #e0a84a; --accent-soft: #3a2e18; --good: #86efac; --good-bg: #163226;
-      --warn: #fb923c; --warn-bg: #3a1d12; --late: #fbbf24; --late-bg: #3a2e10;
-      --shadow: 0 8px 24px rgba(0,0,0,.35);
+      --ink: #e8eef2; --paper: #121a20; --card: #1b262e; --line: #2c3b45; --muted: #93a4ae;
+      --accent: #e0a84a; --good: #86efac; --good-bg: #163226; --warn: #fb923c; --warn-bg: #3a1d12;
+      --late: #fbbf24; --late-bg: #3a2e10;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; height: 100%; }
@@ -62,6 +61,7 @@
     .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
     .pill.miss { background: var(--warn-bg); color: var(--warn); }
     .pill.late { background: var(--late-bg); color: var(--late); }
+    .pill.ok { background: var(--good-bg); color: var(--good); }
     .bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 8px; }
     .bar > i { display: block; height: 100%; background: var(--accent); }
     input, select, textarea { width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; }
@@ -80,7 +80,14 @@
     .seg button.on-miss { background: var(--warn-bg); color: var(--warn); font-weight: 700; }
     .seg button.on-late { background: var(--late-bg); color: var(--late); font-weight: 700; }
     .empty { text-align: center; padding: 36px 12px; color: var(--muted); }
-    .hw-meta { font-size: 13px; color: var(--muted); margin: 4px 0 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 14px; font-size: 14px; }
+    .chip.on { background: var(--ink); color: #f4efe6; border-color: var(--ink); }
+    .check-row { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; margin-bottom: 8px; }
+    .check-row input { width: auto; }
+    .stu-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .stu-chips button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 10px; font-size: 13px; }
+    .stu-chips button.on { background: var(--ink); color: #f4efe6; }
     @media (max-width: 900px) {
       body { flex-direction: column; }
       .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px; padding: 12px; }
@@ -90,7 +97,6 @@
       .main { padding: 16px; }
       .quick, .cols-2 { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 560px) { .quick { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -99,6 +105,7 @@
     <button class="nav-btn active" data-view="home">總覽</button>
     <button class="nav-btn" data-view="homework">功課</button>
     <button class="nav-btn" data-view="behavior">行為</button>
+    <button class="nav-btn" data-view="affairs">班務</button>
     <button class="nav-btn" data-view="students">學生</button>
     <button class="nav-btn" data-view="settings">設定</button>
     <div class="sidebar-foot">
@@ -113,5 +120,6 @@
   <dialog id="dlg"></dialog>
   <script src="app1.js"></script>
   <script src="app2.js"></script>
+  <script src="app3.js"></script>
 </body>
 </html>
