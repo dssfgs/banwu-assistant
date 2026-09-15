@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="icon.svg" />
   <style>
     :root {
-      --ink: #1b3a4b; --ink-2: #2c5364; --paper: #f4efe6; --card: #fffdf8; --line: #e2d8c8;
+      --ink: #1b3a4b; --paper: #f4efe6; --card: #fffdf8; --line: #e2d8c8;
       --muted: #6b7c86; --accent: #c9842a; --good: #2d6a4f; --good-bg: #e8f5ee;
       --warn: #9a3412; --warn-bg: #fde8e0; --late: #92400e; --late-bg: #fef3c7;
       --shadow: 0 8px 24px rgba(27, 58, 75, .08); --radius: 16px; --sidebar: 240px;
@@ -20,7 +20,6 @@
     [data-theme="dark"] {
       --ink: #e8eef2; --paper: #121a20; --card: #1b262e; --line: #2c3b45; --muted: #93a4ae;
       --accent: #e0a84a; --good: #86efac; --good-bg: #163226; --warn: #fb923c; --warn-bg: #3a1d12;
-      --late: #fbbf24; --late-bg: #3a2e10;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; height: 100%; }
@@ -33,7 +32,6 @@
     .brand h1 { margin: 0; font-size: 20px; }
     .brand p { margin: 6px 0 0; font-size: 12px; opacity: .72; }
     .nav-btn { width: 100%; border: 0; background: transparent; color: inherit; text-align: left; padding: 11px 12px; border-radius: 10px; margin-bottom: 4px; }
-    .nav-btn:hover { background: rgba(255,255,255,.08); }
     .nav-btn.active { background: #c9842a; color: #1b3a4b; font-weight: 700; }
     .sidebar-foot { margin-top: auto; display: grid; gap: 8px; }
     .ghost { border: 1px solid rgba(255,255,255,.2); background: transparent; color: inherit; border-radius: 10px; padding: 8px 10px; font-size: 13px; }
@@ -43,24 +41,16 @@
     .topbar .sub { color: var(--muted); margin-top: 4px; font-size: 14px; }
     .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .btn { background: var(--ink); color: #f4efe6; border: 0; border-radius: 10px; padding: 9px 14px; font-weight: 600; }
-    [data-theme="dark"] .btn { background: var(--accent); color: #1b3a4b; }
     .btn.sec { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
     .btn.warn { background: var(--warn); }
-    .btn.good { background: var(--good); }
     .btn.sm { padding: 6px 10px; font-size: 13px; }
     .grid { display: grid; gap: 16px; }
     .cols-2 { grid-template-columns: 1fr 1fr; }
     .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
-    .card h3 { margin: 0 0 12px; font-size: 16px; }
-    .quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-    .quick button { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 12px; font-weight: 700; box-shadow: var(--shadow); }
-    .stat { font-size: 28px; font-weight: 800; }
     .muted { color: var(--muted); font-size: 13px; }
     .item { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
-    .item:last-child { border-bottom: 0; }
     .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
     .pill.miss { background: var(--warn-bg); color: var(--warn); }
-    .pill.late { background: var(--late-bg); color: var(--late); }
     .pill.ok { background: var(--good-bg); color: var(--good); }
     .bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 8px; }
     .bar > i { display: block; height: 100%; background: var(--accent); }
@@ -68,21 +58,15 @@
     textarea { min-height: 88px; resize: vertical; }
     label { display: block; font-size: 13px; color: var(--muted); margin: 0 0 6px; }
     .field { margin-bottom: 12px; }
-    dialog { border: 0; border-radius: 18px; padding: 0; width: min(560px, calc(100vw - 24px)); background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
-    dialog::backdrop { background: rgba(27,58,75,.45); }
+    dialog { border: 0; border-radius: 18px; padding: 0; width: min(560px, calc(100vw - 24px)); background: var(--card); color: var(--ink); }
     .dlg { padding: 22px; }
-    .dlg h3 { margin: 0 0 14px; }
     .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
-    .collect-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--line); }
     .seg { display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
     .seg button { border: 0; background: transparent; padding: 6px 10px; font-size: 12px; }
-    .seg button.on-ok { background: var(--good-bg); color: var(--good); font-weight: 700; }
-    .seg button.on-miss { background: var(--warn-bg); color: var(--warn); font-weight: 700; }
-    .seg button.on-late { background: var(--late-bg); color: var(--late); font-weight: 700; }
     .empty { text-align: center; padding: 36px 12px; color: var(--muted); }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 14px; font-size: 14px; }
-    .chip.on { background: var(--ink); color: #f4efe6; border-color: var(--ink); }
+    .chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 14px; }
+    .chip.on { background: var(--ink); color: #f4efe6; }
     .check-row { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; margin-bottom: 8px; }
     .check-row input { width: auto; }
     .stu-chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -90,10 +74,8 @@
     .stu-chips button.on { background: var(--ink); color: #f4efe6; }
     @media (max-width: 900px) {
       body { flex-direction: column; }
-      .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px; padding: 12px; }
-      .brand p { display: none; }
+      .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 12px; }
       .nav-btn { width: auto; margin: 0; }
-      .sidebar-foot { margin: 0 0 0 auto; display: flex; }
       .main { padding: 16px; }
       .quick, .cols-2 { grid-template-columns: 1fr 1fr; }
     }
@@ -101,7 +83,7 @@
 </head>
 <body>
   <aside class="sidebar">
-    <div class="brand"><h1>班務助手</h1><p>本機・名單・功課・行為</p></div>
+    <div class="brand"><h1>班務助手</h1><p>本機・Drive 備份</p></div>
     <button class="nav-btn active" data-view="home">總覽</button>
     <button class="nav-btn" data-view="homework">功課</button>
     <button class="nav-btn" data-view="behavior">行為</button>
@@ -118,8 +100,10 @@
     <div id="app"></div>
   </main>
   <dialog id="dlg"></dialog>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="app1.js"></script>
   <script src="app2.js"></script>
   <script src="app3.js"></script>
+  <script src="app4.js"></script>
 </body>
 </html>
