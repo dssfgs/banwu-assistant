@@ -1,5 +1,5 @@
-const CACHE = "banwu-v2";
-const ASSETS = ["./", "./index.html", "./app1.js", "./app2.js", "./manifest.json", "./icon.svg"];
+const CACHE = "banwu-v3";
+const ASSETS = ["./", "./index.html", "./app1.js", "./app2.js", "./app3.js", "./manifest.json", "./icon.svg"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
