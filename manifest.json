@@ -1,0 +1,20 @@
+{
+  "name": "班務助手",
+  "short_name": "班務助手",
+  "description": "班主任本機工作台：名單、功課交收、行為記錄",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4efe6",
+  "theme_color": "#1b3a4b",
+  "lang": "zh-Hant-HK",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
